@@ -30,5 +30,55 @@
 }
 
 {
-    
+    //credentials
+    let name = prompt("Say your name");
+    let surname = prompt("Say your surname");
+    let patronymic = prompt("Say your patronymic");
+
+    let temp;
+    temp = name.toLowerCase();
+    name = (temp[0].toUpperCase()) + temp.slice(1);
+
+    temp = surname.toLowerCase();
+    surname = (temp[0].toUpperCase()) + temp.slice(1);
+
+    temp = patronymic.toLowerCase();
+    patronymic = (temp[0].toUpperCase()) + temp.slice(1);
+
+    let fullName = surname + " " + name + " " + patronymic;
+    alert(fullName);
+}
+
+{
+    //beer
+    let str = "Було жарко. Василь пив пиво вприкуску з креветками";
+    let result;
+
+    let tempStr = str.split('пиво');
+    result = tempStr.join('чай');
+
+    console.log(result);
+}
+
+{
+    //no tag
+    let str = "якийсь текст, в якому є один тег <br /> і всяке інше";
+    let result;
+
+    let tmpStr = str.split(' <br /> ');
+    result = tmpStr.join(' ');
+
+    console.log(result);
+}
+
+{
+    //big tag
+    let str = "якийсь текст у якому є один тег <br /> і всяке інше";
+    let result;
+
+    let index = str.indexOf("br");
+    let tmpStr = str.slice(index, index + 2 ).toUpperCase();
+    result = str.substring(0, index) + tmpStr + str.substring(index + 2);
+
+    console.log(result);
 }
