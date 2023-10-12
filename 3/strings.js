@@ -82,3 +82,22 @@
 
     console.log(result);
 }
+
+{
+    //new line
+    let str = prompt("Use \n for new line");
+    let tmpStr = str.split("\\n");
+    let multiLineString = tmpStr.join("\n");
+    alert(multiLineString);
+}
+
+{
+    //youtube
+    const youtubeReg = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|shorts\/)?([\w-]{11})/;
+    let str = prompt("Enter the link to the YouTube video");
+
+    let match = str.match(youtubeReg);
+    let videoId = match[1];
+    let htmlCode = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+    document.write(htmlCode);
+}
