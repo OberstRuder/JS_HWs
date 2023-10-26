@@ -38,16 +38,16 @@
 
 {
     //Multiply table
-    const arr = [[0, 0, 0, 0, 0, 0], [0, 1, 2, 3, 4, 5], [0, 2, 4, 6, 8, 10], [0, 3, 6, 9, 12, 15], [0, 4, 8, 12, 16, 20], [0, 5, 10, 15, 20, 25]];
+    const arr = [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12], [0, 4, 8, 12, 16]];
 }
 
 {
     //Multiply table slice
-    const arr = [[0, 0, 0, 0, 0, 0], [0, 1, 2, 3, 4, 5], [0, 2, 4, 6, 8, 10], [0, 3, 6, 9, 12, 15], [0, 4, 8, 12, 16, 20], [0, 5, 10, 15, 20, 25]];
+    const arr = [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12], [0, 4, 8, 12, 16]];
 
     let arr1 = [];
     for (let i = 1; i < arr.length; i++) {
-        arr1[i-1] = arr[i].slice(-5);
+        arr1[i-1] = arr[i].slice(-4);
     }
 }
 
@@ -102,13 +102,13 @@
 
 {
     //Copy
-    const arr = [[0, 0, 0, 0, 0, 0], [0, 1, 2, 3, 4, 5], [0, 2, 4, 6, 8, 10], [0, 3, 6, 9, 12, 15], [0, 4, 8, 12, 16, 20], [0, 5, 10, 15, 20, 25]];
+    const arr = [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12], [0, 4, 8, 12, 16]];
     let copiedArr = [...arr].slice();
 }
 
 {
     //Deep Copy
-    const arr = [[0, 0, 0, 0, 0, 0], [0, 1, 2, 3, 4, 5], [0, 2, 4, 6, 8, 10], [0, 3, 6, 9, 12, 15], [0, 4, 8, 12, 16, 20], [0, 5, 10, 15, 20, 25]];
+    const arr = [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12], [0, 4, 8, 12, 16]];
     let copiedArr = [];
     for (let subArr of arr) {
       let copiedSubArr = subArr.slice();
@@ -125,19 +125,121 @@
 
 {
     //Flat
-    let arr = [[1, 2, 3, 4, 5], [2, 4, 6, 8, 10], [3, 6, 9, 12, 15], [4, 8, 12, 16, 20], [5, 10, 15, 20, 25]];
+    let arr = [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12], [0, 4, 8, 12, 16]];
     let fullArr = [...arr[0], ...arr[1], ...arr[2], ...arr[3], ...arr[4]];
     console.log(fullArr);
 }
 
 {
     //Destruct
-    let str = prompt("Enter some array");
+    let str = prompt("Enter some string");
     let [first,,,,fifth,,,,ninth] = str;
     console.log([first, fifth, ninth]);
 }
 
 {
     //Destruct default
+    let str = prompt("Enter some string");
+    let [,second = '!',,fourth = '!',fifth = '!'] = str;
+    console.log([second, fourth, fifth]);
+}
+
+{
+    //Multiply table rest
+    const arr = [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8], [0, 3, 6, 9, 12], [0, 4, 8, 12, 16]];
+    let [ , [ , ...firstRow], [ , ...secondRow], [ , ...thirdRow], [ , ...fourthRow]] = arr;
+    let newArr = [[...firstRow], [...secondRow], [...thirdRow], [...fourthRow]];
+    console.log(newArr);
+}
+
+{
+    //For Alert
+    let alertSrt = ["John", "Paul", "George", "Ringo"];
+    for (let a of alertSrt) {
+        alert(a);
+    }
+}
+
+{
+    //For Select Option
+    const currencies = ["USD", "EUR", "GBP", "UAH"];
+    let str = "<select>";
+    for (const currency of currencies) {
+        str += `<option value="${currency}">${currency}</option>`;
+    }
+    str += "</select>";
+    document.write(str);
+}
+
+{
+    //For Table Horizontal
+    const names = ["John", "Paul", "George", "Ringo"];
+    let str = "<table>";
+
+    for (const name of names) {
+        str += `<td>${name}</td>`;
+    }
+
+    str += "</table>";
+    document.write(str);
+}
+
+{
+    //For Table Vertical
+    const names = ["John", "Paul", "George", "Ringo"];
+    let str = "<table>";
+
+    for (const name of names) {
+        str += "<tr><td>" + name + "</td></tr>";
+    }
+
+    str += "</table>";
+    document.write(str);
+}
+
+{
+    //For Table Letters
+    const currencies = ["USD", "EUR", "GBP", "UAH"];
+    let str = "<table>";
+
+    for (const currency of currencies) {
+        str += "<tr>";
+        for (const letter of currency) {
+            str += `<td>${letter}</td>`;
+        }
+        str += "</tr>";
+    }
+
+    str += "</table>";
+    document.write(str);
+}
+
+{
+    //For Multiply Table
+    let tableHTML = "<table>";
+
+    for (const row of arr) {
+        tableHTML += "<tr>";
+        for (const cell of row) {
+            tableHTML += `<td>${cell}</td>`;
+        }
+        tableHTML += "</tr>";
+    }
+
+    tableHTML += "</table>";
+    document.write(tableHTML);
+}
+
+{
+    //Function Capitalize
+    const capitalize = str => {
+        let result = str[0].toUpperCase() + str.slice(1).toLowerCase();
+        return result;
+   }
+   console.log(capitalize("cANBerRa"));
+}
+
+{
+    //Map Capitalize
     
 }
