@@ -103,7 +103,7 @@
 {
     //Copy
     const arr = [[0, 0, 0, 0, 0, 0], [0, 1, 2, 3, 4, 5], [0, 2, 4, 6, 8, 10], [0, 3, 6, 9, 12, 15], [0, 4, 8, 12, 16, 20], [0, 5, 10, 15, 20, 25]];
-    let copiedArr = arr.slice();
+    let copiedArr = [...arr].slice();
 }
 
 {
@@ -126,4 +126,18 @@
 {
     //Flat
     let arr = [[1, 2, 3, 4, 5], [2, 4, 6, 8, 10], [3, 6, 9, 12, 15], [4, 8, 12, 16, 20], [5, 10, 15, 20, 25]];
+    let fullArr = [...arr[0], ...arr[1], ...arr[2], ...arr[3], ...arr[4]];
+    console.log(fullArr);
+}
+
+{
+    //Destruct
+    let str = prompt("Enter some array");
+    let [first,,,,fifth,,,,ninth] = str;
+    console.log([first, fifth, ninth]);
+}
+
+{
+    //Destruct default
+    
 }
