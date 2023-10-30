@@ -278,4 +278,30 @@
 
 {
     //For Brackets Hell Check
+    const line = prompt();
+    const bracketsStack = [];
+    let i = 0;
+    
+    for (const character of line) {
+        if (character === "[" || character === "(" || character === "{") {
+            bracketsStack.push(character);
+        } else if (character === "]" || character === ")" || character === "}") {
+            if (bracketsStack.length === 0) {
+                console.log(`Error: No opening bracket for closing bracket on position ${i}`);
+                break;
+            }
+            const topBracket = bracketsStack.pop();
+            if ((character === "]" && topBracket !== "[") || (character === ")" && topBracket !== "(") || (character === "}" && topBracket !== "{")) {
+                console.log(`Error: Incorrect closing bracket in position ${i}`);
+                break;
+            }
+        }
+        i++;
+    }
+    
+    if (bracketsStack.length === 0) {
+        console.log("A row without errors!");
+    } else {
+        console.log("A row have errors!");
+    }
 }
