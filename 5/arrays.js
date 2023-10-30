@@ -241,5 +241,41 @@
 
 {
     //Map Capitalize
-    
+    let str = prompt("Enter some string");
+    let arr = str.split(" ");
+    let capArr = arr.map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
+    let result = capArr.join(" ");
+    console.log(result)
+}
+
+{
+    //Filter Lexics
+    let arr = prompt("Enter some string").split(' ');
+    const badWords = ["dupa", "jopa", "govno"];
+    let filtered = arr.filter(word => !badWords.includes(word));
+    let result = filtered.join(' ');
+    console.log(result);
+}
+
+{
+    //Beep Lexics
+    let arr = prompt("Enter some string").split(' ');
+    const badWords = ["dupa", "jopa", "govno"];
+    let filtered = arr.map(word => badWords.includes(word) ? "BEEP" : word);
+    let result = filtered.join(' ');
+    console.log(result);
+}
+
+{
+    //Reduce HTML
+    const currencies = ["USD", "EUR", "GBP", "UAH"];
+    const selectOptions = currencies.reduce((acc, currency) => {
+        return acc + `<option value="${currency}">${currency}</option>`;
+    }, "<select>") + "</select>";
+
+    document.write(selectOptions);
+}
+
+{
+    //For Brackets Hell Check
 }
