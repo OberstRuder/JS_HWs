@@ -165,7 +165,7 @@ function form(obj) {
         });
     }
 
-    var persons = [
+    let persons = [
         { name: "Іван", age: 17 },
         { name: "Марія", age: 35 },
         { name: "Олексій", age: 73 },
@@ -222,4 +222,29 @@ function createAndDisplayTable(data, sortBy, ascending = true) {
     tableHTML += '</table>';
 
     document.body.innerHTML = tableHTML;
+}
+
+{
+    //Calc Func
+    function calculateFuelConsumption(oldCarMileage, newCarMilage, oldAmountofFuel, newAmountofFuel) {
+        const measurementUnit = " L/100Km";
+
+        const monthlyCarMilage = newCarMilage - oldCarMileage;
+        const consumedAmountOfFuel = oldAmountofFuel - newAmountofFuel;
+        const fuelConsumption = (consumedAmountOfFuel / monthlyCarMilage * 100).toFixed(2);
+
+        return {
+            monthlyCarMilage: monthlyCarMilage,
+            consumedAmountOfFuel: consumedAmountOfFuel,
+            fuelConsumption: fuelConsumption + measurementUnit
+        };
+    }
+
+    const oldCarMileage = 160000;
+    const newCarMilage = 160350;
+    const oldAmountofFuel = 60;
+    const newAmountofFuel = 35;
+
+    const result = calculateFuelConsumption(oldCarMileage, newCarMilage, oldAmountofFuel, newAmountofFuel);
+    console.log(result);
 }

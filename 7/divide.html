@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number: divide</title>
+</head>
+
+<body>
+    <input type='number' id="firstNumber" />
+    <input type='number' id="secondNumber" />
+    <div id="divisionResult">
+        empty
+    </div>
+
+    <script>
+        const firstNumber = document.getElementById("firstNumber");
+        const secondNumber = document.getElementById("secondNumber");
+        const divisionResult = document.getElementById("divisionResult");
+
+        const calcResult = () => {
+            const a = parseFloat(firstNumber.value);
+            const b = parseFloat(secondNumber.value);
+
+            if (!isNaN(a) && !isNaN(b) && b !== 0) {
+                const result = Math.floor(a / b);
+                divisionResult.innerHTML = `Result: ${result}`;
+            } else {
+                divisionResult.innerHTML = "Invalid input. Please enter valid numbers.";
+            }
+        };
+
+        firstNumber.oninput = secondNumber.oninput = calcResult;
+    </script>
+</body>
+
+</html>

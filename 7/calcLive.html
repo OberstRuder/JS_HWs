@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc Live</title>
+</head>
+
+<body>
+    <label for="oldCarMileage">Old Car Mileage:</label>
+    <input type="number" id="oldCarMileage" /><br/>
+
+    <label for="newCarMilage">New Car Mileage:</label>
+    <input type="number" id="newCarMilage" /><br/>
+
+    <label for="oldAmountofFuel">Old Amount of Fuel:</label>
+    <input type="number" id="oldAmountofFuel" /><br/>
+
+    <label for="newAmountofFuel">New Amount of Fuel:</label>
+    <input type="number" id="newAmountofFuel" /><br/>
+
+    <button onclick="calculateAndDisplay()">Calculate</button>
+
+    <div id="calculationResult">
+        empty
+    </div>
+
+    <script>
+        function calculateFuelConsumption(oldCarMileage, newCarMilage, oldAmountofFuel, newAmountofFuel) {
+            const measurementUnit = " L/100Km";
+
+            const monthlyCarMilage = newCarMilage - oldCarMileage;
+            const consumedAmountOfFuel = oldAmountofFuel - newAmountofFuel;
+            const fuelConsumption = (consumedAmountOfFuel / monthlyCarMilage * 100).toFixed(2);
+
+            return {
+                monthlyCarMilage: monthlyCarMilage,
+                consumedAmountOfFuel: consumedAmountOfFuel,
+                fuelConsumption: fuelConsumption + measurementUnit
+            };
+        }
+
+        function calculateAndDisplay() {
+            const oldCarMileage = parseFloat(document.getElementById("oldCarMileage").value);
+            const newCarMilage = parseFloat(document.getElementById("newCarMilage").value);
+            const oldAmountofFuel = parseFloat(document.getElementById("oldAmountofFuel").value);
+            const newAmountofFuel = parseFloat(document.getElementById("newAmountofFuel").value);
+
+            const result = calculateFuelConsumption(oldCarMileage, newCarMilage, oldAmountofFuel, newAmountofFuel);
+
+            const calculationResultDiv = document.getElementById("calculationResult");
+            calculationResultDiv.innerHTML = `Monthly Car Mileage: ${result.monthlyCarMilage}<br/>
+                                           Consumed Amount of Fuel: ${result.consumedAmountOfFuel}<br/>
+                                           Fuel Consumption: ${result.fuelConsumption}`;
+        }
+    </script>
+</body>
+
+</html>
