@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+</head>
+
+<body>
+    <select id='from'></select>
+    <select id='to'></select>
+    <div id='rate'></div>
+    <input type='number' id='amount' />
+    <div id='result'></div>
+
+    <script>
+        const fromSelect = document.getElementById('from');
+        const toSelect = document.getElementById('to');
+        const rateDiv = document.getElementById('rate');
+        const amountInput = document.getElementById('amount');
+        const resultDiv = document.getElementById('result');
+
+        fetch('https://open.er-api.com/v6/latest/USD')
+            .then(res => res.json())
+            .then(data => {
+                const currencyRates = data.rates;
+
+                for (const currency in currencyRates) {
+                    const optionFrom = document.createElement('option');
+                    optionFrom.value = currency;
+                    optionFrom.innerText = currency;
+                    const optionTo = optionFrom.cloneNode(true);
+
+                    fromSelect.appendChild(optionFrom);
+                    toSelect.appendChild(optionTo);
+                }
+
+                fromSelect.onchange = toSelect.onchange = amountInput.oninput = updateResult;
+
+                function updateResult() {
+                    const fromCurrency = fromSelect.value;
+                    const toCurrency = toSelect.value;
+                    const exchangeRate = currencyRates[toCurrency] / currencyRates[fromCurrency];
+                    const rateText = `Exchange Rate: 1 ${fromCurrency} = ${exchangeRate.toFixed(4)} ${toCurrency}`;
+                    const result = (amountInput.value * exchangeRate).toFixed(2);
+
+                    rateDiv.innerText = rateText;
+                    resultDiv.innerText = `Result: ${result} ${toCurrency}`;
+                }
+            });
+    </script>
+</body>
+</html>
