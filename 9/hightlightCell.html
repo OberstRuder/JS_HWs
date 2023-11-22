@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        td {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .highlighted {
+            background-color: yellow;
+        }
+    </style>
+    <title>DOM: highlight cell</title>
+</head>
+<body>
+    <script>
+        const tableContainer = document.createElement('div');
+        const multiplicationTable = document.createElement('table');
+
+        for (let i = 0; i <= 9; i++) {
+            const row = document.createElement('tr');
+
+            for (let j = 0; j <= 9; j++) {
+                const cell = document.createElement('td');
+
+                if (i === 0 && j === 0) {
+                    cell.innerText = '0';
+                } else if (i === 0) {
+                    cell.innerText = j;
+                } else if (j === 0) {
+                    cell.innerText = i;
+                } else {
+                    cell.innerText = i * j;
+                }
+
+                cell.addEventListener('mouseover', () => {
+                    cell.classList.add('highlighted');
+                });
+
+                cell.addEventListener('mouseout', () => {
+                    cell.classList.remove('highlighted');
+                });
+
+                row.appendChild(cell);
+            }
+
+            multiplicationTable.appendChild(row);
+        }
+
+        tableContainer.appendChild(multiplicationTable);
+        document.body.appendChild(tableContainer);
+    </script>
+</body>
+</html>

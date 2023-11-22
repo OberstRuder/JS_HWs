@@ -40,7 +40,7 @@
 
 {
     //comparison if
-    var age = prompt("Скільки вам років?");
+    var age = +prompt("Скільки вам років?");
 
     if (age < 0)
         alert("помилка");
