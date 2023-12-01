@@ -1,17 +1,17 @@
 //Temperature
-function temperatureToF(cTemp) {
+let temperatureToF = (cTemp) => {
     let fTemp = cTemp * 9 / 5 + 32;
     return fTemp;
 }
 
 //RGB
-function RGB(r, g, b) {
+let RGB = (r, g, b) => {
     let cssColor = ("#" + r.toString(16).padStart(2, '0') + g.toString(16).padStart(2, '0') + b.toString(16).padStart(2, '0') );
     return cssColor;
 }
 
 //Flats
-function flats(floors, flats, flatNumber) {
+let flats = (floors, flats, flatNumber) => {
     let entrance = Math.ceil(flatNumber / (floors * flats));
     let remainingFlats = flatNumber - (entrance - 1) * floors * flats;
     let floor = Math.ceil(remainingFlats / flats);
@@ -20,7 +20,7 @@ function flats(floors, flats, flatNumber) {
 }
 
 //Credentials
-function crudentionals() {
+let crudentionals = () => {
     let name = prompt("Say your name");
     let surname = prompt("Say your surname");
     let fatherName = prompt("Say your patronymic");
@@ -41,7 +41,7 @@ function crudentionals() {
 }
 
 //New line
-function newLine(str) {
+let newLine = (str) => {
     let tmpStr = str.split("\\n");
     let multiLineString = tmpStr.join("\n");
     return multiLineString;
@@ -60,7 +60,7 @@ function newLine(str) {
 }
 
 //Login And Password
-function loginAndPassword(login, password) {
+let loginAndPassword = (login, password) => {
     const enteredLogin = prompt("Enter the login:");
 
     if (enteredLogin === login) {
@@ -77,7 +77,7 @@ function loginAndPassword(login, password) {
 }
 
 //For Table
-function forTable(arr) {
+let forTable = (arr) => {
     let tableHTML = "<table>";
 
     for (const row of arr) {
@@ -93,7 +93,7 @@ function forTable(arr) {
 }
 
 //Filter Lexics
-function filterLexics(inputString, badWords) {
+let filterLexics = (inputString, badWords) => {
     const arr = inputString.split(' ');
     const filtered = arr.filter(word => !badWords.includes(word));
     const result = filtered.join(' ');
@@ -101,7 +101,7 @@ function filterLexics(inputString, badWords) {
 }
 
 //Currency Table
-function currencyTable() {
+let currencyTable = () => {
     fetch('https://open.er-api.com/v6/latest/USD')
         .then(res => res.json())
         .then(data => {
@@ -128,7 +128,7 @@ function currencyTable() {
 }
 
 //Form
-function form(obj) {
+let form = (obj) => {
     const form = document.createElement('form');
 
     for (const key in obj) {
@@ -150,7 +150,7 @@ function form(obj) {
 
 //Array of objects sort
 {
-    function arrayOfObjectSort(arr, field, ascending = true) {
+    let arrayOfObjectSort = (arr, field, ascending = true) => {
         return arr.sort((a, b) => {
             let valA = a[field];
             let valB = b[field];
@@ -181,7 +181,7 @@ function form(obj) {
 
 
 //Table
-function createAndDisplayTable(data, sortBy, ascending = true) {
+let createAndDisplayTable = (data, sortBy, ascending = true) => {
     const dataCopy = data.slice();
 
     dataCopy.sort((a, b) => {
@@ -226,7 +226,7 @@ function createAndDisplayTable(data, sortBy, ascending = true) {
 
 {
     //Calc Func
-    function calculateFuelConsumption(oldCarMileage, newCarMilage, oldAmountofFuel, newAmountofFuel) {
+    let calculateFuelConsumption = (oldCarMileage, newCarMilage, oldAmountofFuel, newAmountofFuel) => {
         const measurementUnit = " L/100Km";
 
         const monthlyCarMilage = newCarMilage - oldCarMileage;

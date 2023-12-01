@@ -219,8 +219,3 @@
 
     console.log(rombik);
 }
-
-{
-    //DOM: multiply table
-    
-}
