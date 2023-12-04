@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HW12</title>
+</head>
+
+<body>
+  <h3>Симулятор студента</h3>
+  <div id="casa-register"></div>
+  <div id="beer"></div>
+  <div id="snacks"></div>
+  <div id="soda"></div>
+  <div id="cigarettes"></div>
+  <div id="cash-register"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.1/redux.min.js"></script>
+  <script>
+    const initialState = {
+      kiosk: {
+        beer: { quantity: 100, price: 30 },
+        snacks: { quantity: 100, price: 40 },
+        soda: { quantity: 100, price: 20 },
+        cigarettes: { quantity: 100, price: 90 },
+      },
+      cashRegister: 300,
+      casaRegister: 0,
+    };
+
+    const kioskReducer = (state = initialState, action) => {
+      switch (action.type) {
+        case 'BUY_ITEM':
+          const { item, quantity } = action.payload;
+          const itemInfo = state.kiosk[item];
+
+          if (itemInfo.quantity >= quantity) {
+            const totalPrice = quantity * itemInfo.price;
+
+            if (state.cashRegister - totalPrice >= 0) {
+              return {
+                ...state,
+                kiosk: {
+                  ...state.kiosk,
+                  [item]: {
+                    ...itemInfo,
+                    quantity: itemInfo.quantity - quantity,
+                  },
+                },
+                cashRegister: state.cashRegister - totalPrice,
+                casaRegister: state.casaRegister + totalPrice,
+              };
+            } else {
+              alert('Недостатньо коштів для покупки.');
+              return state;
+            }
+          } else {
+            alert('Недостатньо товару для покупки.');
+            return state;
+          }
+
+        default:
+          return state;
+      }
+    };
+
+    const store = Redux.createStore(kioskReducer);
+
+    store.subscribe(() => {
+      render();
+    });
+
+    function render() {
+      const kioskState = store.getState().kiosk;
+
+      for (const item in kioskState) {
+        const { quantity, price } = kioskState[item];
+        const element = document.getElementById(item);
+        element.textContent = `${item}: ${quantity} шт., Ціна: ${price.toFixed(2)} грн`;
+      }
+
+      const cashRegisterElement = document.getElementById('cash-register');
+      cashRegisterElement.textContent = `Гаманець: ${store.getState().cashRegister.toFixed(2)} грн`;
+
+      const casaRegisterElement = document.getElementById('casa-register');
+      casaRegisterElement.textContent = `Каса: ${store.getState().casaRegister.toFixed(2)} грн`;
+    }
+
+    ['beer', 'snacks', 'soda', 'cigarettes'].forEach(item => {
+      const buyButton = document.createElement('button');
+      buyButton.textContent = `Купити ${item}`;
+      buyButton.addEventListener('click', () => buyItem(item));
+      document.body.appendChild(buyButton);
+    });
+
+    function buyItem(item) {
+      const quantity = parseInt(prompt(`Введіть кількість ${item}, яку ви хочете купити:`));
+
+      if (quantity > 0) {
+        store.dispatch({ type: 'BUY_ITEM', payload: { item, quantity } });
+      } else {
+        alert('Будь ласка, введіть правильну кількість.');
+      }
+    }
+
+    store.dispatch({ type: 'INIT' });
+  </script>
+</body>
+
+</html>
