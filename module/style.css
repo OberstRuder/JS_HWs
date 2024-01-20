@@ -1,0 +1,80 @@
+body {
+    overflow-x: hidden;
+}
+
+body img {
+    max-width: 20vw;
+}
+
+#mainContainer {
+    display: flex;
+}
+
+#aside {
+    width: 30%;
+}
+
+#aside>a {
+    display: block;
+}
+
+header {
+    min-height: 18vh;
+    background-color: #AAA;
+}
+
+#main a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#userLogin {
+    position: absolute;
+    right: 2vw;
+    top: 6vh;
+}
+
+#userRegister {
+    position: absolute;
+    right: 2vw;
+    top: 9vh;
+}
+
+#cartIcon a img {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    right: -2vw;
+    top: 2vh;
+}
+
+#history {
+    position: absolute;
+    right: 2vw;
+    top: 3vh;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.close {
+    position: absolute;
+    right: 2vw;
+}
+.cart-quantity {
+    position: relative;
+    width: 15px;
+    text-align: center;
+    top: -3vh;
+    right: -5vw;
+    background-color: rgb(0, 144, 14);
+    color: white;
+    border-radius: 50%;
+}
